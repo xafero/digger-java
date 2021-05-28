@@ -342,7 +342,7 @@ void initdigger () {
   expsn=0;
   rechargetime=0;
 }
-public boolean keyDown (Event e, int key) {
+public boolean keyDown (int key) {
 	switch (key) {
 		case 1006: Input.processkey (0x4b);	break;
 		case 1007: Input.processkey (0x4d);	break;
@@ -357,7 +357,7 @@ public boolean keyDown (Event e, int key) {
 	}
 	return true;
 }
-public boolean keyUp (Event e, int key) {
+public boolean keyUp (int key) {
 	switch (key) {
 		case 1006: Input.processkey (0xcb);	break;
 		case 1007: Input.processkey (0xcd);	break;
