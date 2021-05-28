@@ -1,3 +1,5 @@
+package org.digger.classic;
+
 /* WARNING! This code is ugly and highly non-object-oriented.
 It was ported from C almost mechanically! */
 
