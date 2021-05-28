@@ -434,7 +434,9 @@ public void start () {
 	requestFocus ();
 }
 public void update (Graphics g) {
-	g.drawImage (Pc.currentImage, 0, 0, this);
+	Graphics2D g2 = (Graphics2D)g;
+    g2.scale(4.0, 4.0);
+	g2.drawImage (Pc.currentImage, 0, 0, this);
 }
 void updatedigger () {
   int dir,ddir,clbits,diggerox,diggeroy,nmon;
