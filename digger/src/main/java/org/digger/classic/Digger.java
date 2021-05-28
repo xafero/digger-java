@@ -5,9 +5,10 @@ It was ported from C almost mechanically! */
 
 import java.applet.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.*;
 
-public class Digger extends java.applet.Applet implements Runnable {
+public class Digger extends AppletCompat implements Runnable {
 
 static int MAX_RATE = 200, MIN_RATE = 40;
 
