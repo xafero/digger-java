@@ -1,3 +1,5 @@
+package org.digger.classic;
+
 import java.awt.*;
 import java.awt.image.*;
 

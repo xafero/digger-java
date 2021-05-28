@@ -1,3 +1,5 @@
+package org.digger.classic;
+
 // sound has not been ported yet
 
 class Sound {

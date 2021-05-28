@@ -1,3 +1,5 @@
+package org.digger.classic;
+
 // original cga graphics
 
 abstract class cgagrafx {

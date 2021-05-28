@@ -1,3 +1,5 @@
+package org.digger.classic;
+
 class Bags {
 
 Digger dig;

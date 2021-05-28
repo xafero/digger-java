@@ -1,3 +1,5 @@
+package org.digger.classic;
+
 class Drawing {
 
 Digger dig;

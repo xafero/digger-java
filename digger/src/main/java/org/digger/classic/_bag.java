@@ -1,3 +1,5 @@
+package org.digger.classic;
+
 class _bag {
   int x,y,h,v,xr,yr,dir,wt,gt,fallh;
   boolean wobbling,unfallen,exist;
