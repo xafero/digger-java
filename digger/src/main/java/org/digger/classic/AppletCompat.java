@@ -13,10 +13,10 @@ public abstract class AppletCompat extends JPanel {
 	@Override
 	protected void processKeyEvent(KeyEvent e) {
 
-		if (e.getID() == KeyEvent.KEY_TYPED) {
+		if (e.getID() == KeyEvent.KEY_RELEASED) {
 			keyUp(convertToSwing(e.getKeyCode()));
 
-		} else if (e.getID() == KeyEvent.KEY_RELEASED) {
+		} else if (e.getID() == KeyEvent.KEY_PRESSED) {
 			keyDown(convertToSwing(e.getKeyCode()));
 		}
 
