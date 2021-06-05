@@ -2,12 +2,22 @@ package org.digger.classic;
 
 public class NewSound {
 
-	static private class DIGGER_SOUND_DATA {
+	static private class DIGGER_SOUND_DATA extends MusicNotes {
 		static final String NORMAL_MIDI_FILE = "/audio/popcorn.mid";
 		static final String BONUS_MIDI_FILE = "/audio/williamtell.mid";
 		static final String DEATH_MIDI_FILE = "/audio/funeral.mid";
 		static final String NEW_LEVEL_MIDI_FILE = "/audio/level.mid";
 		static final String BONUS_PULSE_MIDI_FILE = "/audio/bonus_pulse.mid";
+
+		static final int MONEY_MIDI_LOW = D4;
+		static final int MONEY_MIDI_HIGH = MONEY_MIDI_LOW + 30;
+		static final int MONEY_JUMP = 3;
+		static final byte MONEY_NOTE_LENGTH = MusicNotes.NS;
+		static final int MONEY_TEMPO = 60;
+
+		static final byte[] EAT_MONSTER_TUNE = { D5, NS, D6, NS, D7, NS, D5, NS, D6, NS, D7, NS, D5, NS, D6, NS, D7,
+				NS };
+		static final int EAT_MONSTER_TEMPO = 60;
 	}
 
 	private boolean muteFlag = false;
@@ -21,8 +31,32 @@ public class NewSound {
 	private SoundPlayer newLevelPlayer = null;
 	private SoundPlayer bonusPulseMidiPlayer = null;
 
+	private final SoundPlayer eatMonsterPlayer = new PianoPlayer(DIGGER_SOUND_DATA.EAT_MONSTER_TUNE,
+			DIGGER_SOUND_DATA.EAT_MONSTER_TEMPO);
+	private final SoundPlayer moneyEatPlayer;
+
 	public NewSound() {
 		setMusicMode(MIDI_MUSIC_MODE);
+
+		// Create money player
+		byte[] moneySeq = new byte[(DIGGER_SOUND_DATA.MONEY_MIDI_HIGH - DIGGER_SOUND_DATA.MONEY_MIDI_LOW) * 2
+				/ DIGGER_SOUND_DATA.MONEY_JUMP];
+		byte low = DIGGER_SOUND_DATA.MONEY_MIDI_LOW;
+		byte high = DIGGER_SOUND_DATA.MONEY_MIDI_HIGH;
+		int pos = 0;
+		boolean toggle = true;
+		while (low < high) {
+			moneySeq[pos] = toggle ? low : high;
+			moneySeq[pos + 1] = DIGGER_SOUND_DATA.MONEY_NOTE_LENGTH;
+			pos += 2;
+			if (toggle) {
+				low += DIGGER_SOUND_DATA.MONEY_JUMP;
+			} else {
+				high -= DIGGER_SOUND_DATA.MONEY_JUMP;
+			}
+			toggle = !toggle;
+		}
+		moneyEatPlayer = new PianoPlayer(moneySeq, DIGGER_SOUND_DATA.MONEY_TEMPO);
 	}
 
 	public void setMusicMode(int newMusicMode) {
@@ -77,8 +111,9 @@ public class NewSound {
 	}
 
 	public void playMoneyEat() {
-		// TODO Auto-generated method stub
-
+		if (!muteFlag) {
+			moneyEatPlayer.playSingle();
+		}
 	}
 
 	private boolean normalMusicMode = false;
@@ -135,8 +170,9 @@ public class NewSound {
 	}
 
 	public void playMonsterEat() {
-		// TODO Auto-generated method stub
-
+		if (!muteFlag) {
+			eatMonsterPlayer.playSingle();
+		}
 	}
 
 	public void playExplode() {
