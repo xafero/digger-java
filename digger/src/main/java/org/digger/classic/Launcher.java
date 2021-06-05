@@ -1,5 +1,6 @@
 package org.digger.classic;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class Launcher {
@@ -15,6 +16,9 @@ public class Launcher {
 		frame.setTitle("Digger Remastered");
 		frame.setSize((int) (game.width * 4.03), (int) (game.height * 4.15));
 		frame.setLocationRelativeTo(null);
+
+		ImageIcon icon = new ImageIcon(Resources.findResource("/icons/digger.png"));
+		frame.setIconImage(icon.getImage());
 
 		frame.getContentPane().add(game);
 		frame.setVisible(true);
