@@ -41,6 +41,7 @@ int bagy (int bag) {
 void cleanupbags () {
   int bpa;
   dig.Sound.soundfalloff();
+  dig.newSound.fallEnd();
   for (bpa=1;bpa<8;bpa++) {
 	if (bagdat[bpa].exist && ((bagdat[bpa].h==7 && bagdat[bpa].v==9) ||
 		bagdat[bpa].xr!=0 || bagdat[bpa].yr!=0 || bagdat[bpa].gt!=0 ||
@@ -61,6 +62,7 @@ void dobags () {
 	if (bagdat[bag].exist) {
 	  if (bagdat[bag].gt!=0) {
 		if (bagdat[bag].gt==1) {
+                  dig.newSound.playBagBreak();
 		  dig.Sound.soundbreak();
 		  dig.Drawing.drawgold(bag,4,bagdat[bag].x,bagdat[bag].y);
 		  dig.Main.incpenalty();
@@ -90,8 +92,10 @@ void dobags () {
 	if (bagdat[bag].dir!=6 && bagdat[bag].wobbling && bagdat[bag].exist)
 	  soundwobbleoffflag=false;
   }
-  if (soundfalloffflag)
+  if (soundfalloffflag) {
 		dig.Sound.soundfalloff();
+                dig.newSound.fallEnd();
+  }
   if (soundwobbleoffflag)
 		dig.Sound.soundwobbleoff();
 }
@@ -118,6 +122,7 @@ void getgold (int bag) {
   if ((clbits&1)!=0) {
 	dig.Scores.scoregold();
 	dig.Sound.soundgold();
+        dig.newSound.playMoneyEat();
 	dig.digtime=0;
   }
   else
@@ -299,8 +304,10 @@ void updatebag (int bag) {
 		  if (bagdat[bag].wt==0) {
 			bagdat[bag].dir=6;
 			dig.Sound.soundfall();
+                        dig.newSound.fallStart();
 			break;
 		  }
+                  dig.newSound.playLooseLevel(bagdat[bag].wt);
 		  bagdat[bag].wt--;
 		  wbl=bagdat[bag].wt%8;
 		  if (!((wbl&1)!=0)) {
@@ -326,6 +333,7 @@ void updatebag (int bag) {
 		  bagdat[bag].dir=6;
 		  bagdat[bag].wt=0;
 		  dig.Sound.soundfall();
+                  dig.newSound.fallStart();
 		}
 		else
 		  baghitground(bag);

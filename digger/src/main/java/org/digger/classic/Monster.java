@@ -400,6 +400,7 @@ void monai(int mon) {
 	  killmon(mon);
 	  dig.Scores.scoreeatm();
 	  dig.Sound.soundeatm(); /* Collision in bonus mode */
+          dig.newSound.playMonsterEat();
 	}
 	else
 	  dig.killdigger(3,0); /* Kill digger */
