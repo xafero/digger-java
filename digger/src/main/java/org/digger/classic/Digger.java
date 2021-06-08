@@ -389,6 +389,15 @@ public class Digger extends AppletCompat implements Runnable {
 		case 1008:
 			Input.processkey(0x3b);
 			break;
+		case 1021: 
+			Input.processkey(0x78); 
+			break;
+		case 1031: 
+			Input.processkey(0x2b); 
+			break;
+		case 1032: 
+			Input.processkey(0x2d);
+			break;
 		default:
 			key &= 0x7f;
 			if ((key >= 65) && (key <= 90))
@@ -416,6 +425,15 @@ public class Digger extends AppletCompat implements Runnable {
 		case 1008:
 			Input.processkey(0xbb);
 			break;
+		case 1021: 
+			Input.processkey(0xf8); 
+			break;
+		case 1031: 
+			Input.processkey(0xab); 
+			break;
+		case 1032: 
+			Input.processkey(0xad); 
+			break;			
 		default:
 			key &= 0x7f;
 			if ((key >= 65) && (key <= 90))

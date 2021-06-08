@@ -38,6 +38,12 @@ public abstract class AppletCompat extends JPanel {
 			return 1005;
 		case KeyEvent.VK_F1:
 			return 1008;
+        case KeyEvent.VK_F10:
+            return 1021;
+        case KeyEvent.VK_PLUS:
+            return 1031;
+        case KeyEvent.VK_MINUS:
+            return 1032;			
 		}
 		return awtCode;
 	}
