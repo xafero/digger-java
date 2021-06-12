@@ -7,7 +7,7 @@ import java.util.*;
 class Scores {
 
 	Digger dig;
-	Object[][] scores;
+	ScoreTuple[] scores;
 	String substr;
 
 	char highbuf[] = new char[10];
@@ -24,7 +24,7 @@ class Scores {
 		dig = d;
 	}
 
-	public Object[][] _submit(String n, int s) {
+	public ScoreTuple[] _submit(String n, int s) {
 		if (dig.subaddr != null) {
 			int ms = 16 + (int) (System.currentTimeMillis() % (65536 - 16));
 			substr = n + '+' + s + '+' + ms + '+' + ((ms + 32768) * s) % 65536;
@@ -33,7 +33,7 @@ class Scores {
 		return scores;
 	}
 
-	public void _updatescores(Object[][] o) {
+	public void _updatescores(ScoreTuple[] o) {
 
 		if (o == null)
 			return;
@@ -42,8 +42,8 @@ class Scores {
 			String[] in = new String[10];
 			int[] sc = new int[10];
 			for (int i = 0; i < 10; i++) {
-				in[i] = (String) o[i][0];
-				sc[i] = ((Integer) o[i][1]).intValue();
+				in[i] = o[i].getKey();
+				sc[i] = o[i].getValue();
 			}
 			for (int i = 0; i < 10; i++) {
 				scoreinit[i + 1] = in[i];

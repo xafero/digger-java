@@ -53,10 +53,11 @@ public class ScoreStorage {
 				return false;
 			FileInputStream fileIn = new FileInputStream(scoFile);
 			BufferedReader br = new BufferedReader(new InputStreamReader(fileIn));
-			Object[][] sc = new Object[10][2];
+			ScoreTuple[] sc = new ScoreTuple[10];
 			for (int i = 0; i < 10; i++) {
-				sc[i][0] = br.readLine();
-				sc[i][1] = Integer.parseInt(br.readLine());
+				String name = br.readLine();
+				int score = Integer.parseInt(br.readLine());
+				sc[i] = new ScoreTuple(name, score);
 			}
 			br.close();
 			fileIn.close();
