@@ -26,9 +26,9 @@ public class ScoreStorage {
 			String[] scoreinit = mem.scoreinit;
 			long[] scorehigh = mem.scorehigh;
 			for (int i = 0; i < 10; i++) {
-				bw.append(scoreinit[i]);
+				bw.append(scoreinit[i + 1]);
 				bw.newLine();
-				bw.append(Long.toString(scorehigh[i]));
+				bw.append(Long.toString(scorehigh[i + 2]));
 				bw.newLine();
 			}
 			bw.flush();
