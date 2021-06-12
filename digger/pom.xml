@@ -4,9 +4,9 @@
  
   <groupId>org.digger.game</groupId>
   <artifactId>digger-classic</artifactId>
-	<name>digger</name>
+  <name>digger</name>
   <version>1.0</version>
-	<packaging>jar</packaging>
+  <packaging>jar</packaging>
  
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
